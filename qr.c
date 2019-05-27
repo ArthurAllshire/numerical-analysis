@@ -66,7 +66,7 @@ void column_divide(double complex* factor, Matrix A, int j, int m, int n) {
 // Implements the modified Gram Schmidt algorithm
 // where A is mxn
 //       R is nxn
-//       Q overrides A
+//       Q overwrites A
 void ReducedQR(Matrix A, Matrix R, int m, int n) {
 
     for (int i = 0; i < n; ++i) {
@@ -74,7 +74,7 @@ void ReducedQR(Matrix A, Matrix R, int m, int n) {
         column_divide(R+(i*n+i), A, i, m, n);
 
         for(int j = i+1; j < n; ++j) {
-            // A overridden by v and then by 
+            // A overwritten by v and then by 
             columns_dot_product(R+(i*n+j), A, A, i, j, m, n);
 
             for (int k = 0; k < m; ++k) {
@@ -87,7 +87,7 @@ void ReducedQR(Matrix A, Matrix R, int m, int n) {
 // Implements the householder method for orthogonal triangularisation
 // A is mxn
 // W is mxn
-// W must be initialised to all zeros.
+// W must be initialized to all zeros.
 void house(Matrix A, Matrix W, int m, int n) {
     double sum_squares;
     double x_norm, v_norm;
@@ -194,7 +194,7 @@ int main() {
     house(A_house, W, m, n);
 
     printf("W\n");
-    pmat(W, n, n);
+    pmat(W, m, n);
     printf("R_house\n");
     pmat(A_house, m, n);
 
